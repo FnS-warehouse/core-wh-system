@@ -17,6 +17,7 @@ import java.util.UUID;
 public class WarehouseEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO) // Add this line to auto-generate UUID
     private UUID id;
 
     private String name;

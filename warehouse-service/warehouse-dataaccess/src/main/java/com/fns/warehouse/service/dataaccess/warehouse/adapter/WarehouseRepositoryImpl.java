@@ -29,8 +29,9 @@ public class WarehouseRepositoryImpl implements WarehouseRepository {
     }
 
     @Override
-    public Stock getStock(UUID stockId) {
-        return null;
+    public Warehouse findById(UUID warehouseId) {
+
+        return Warehouse.builder().name("hala").build();
     }
 
 }

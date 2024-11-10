@@ -24,9 +24,9 @@ public class WarehouseApplicationServiceImpl implements WarehouseApplicationServ
         return warehouseCreateCommandHandler.createWarehouse(createWarehouseCommand);
     }
 
-    @Override
-    public StockTransferResponse transferStock(StockTransferCommand stockTransferCommand) {
-        return warehouseCreateCommandHandler.transferStock(stockTransferCommand);
-    }
+//    @Override
+//    public StockTransferResponse transferStock(StockTransferCommand stockTransferCommand) {
+//        return warehouseCreateCommandHandler.transferStock(stockTransferCommand);
+//    }
 
 }

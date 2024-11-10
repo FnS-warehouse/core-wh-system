@@ -7,5 +7,5 @@ import java.util.UUID;
 public interface WarehouseRepository  {
     Warehouse save(Warehouse warehouse);
 
-    Stock getStock(UUID stockId);
+    Warehouse findById(UUID warehouseId);
 }

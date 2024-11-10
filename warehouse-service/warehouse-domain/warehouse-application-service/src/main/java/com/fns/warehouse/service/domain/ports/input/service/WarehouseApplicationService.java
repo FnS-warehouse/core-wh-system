@@ -12,6 +12,6 @@ import javax.validation.Valid;
 public interface WarehouseApplicationService {
     CreateWarehouseResponse createWarehouse(@Valid CreateWarehouseCommand createOrderCommand);
 
-    StockTransferResponse transferStock(@Valid StockTransferCommand stockTransferCommand);
+//    StockTransferResponse transferStock(@Valid StockTransferCommand stockTransferCommand);
 
 }

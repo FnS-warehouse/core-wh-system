@@ -10,6 +10,7 @@ import com.fns.warehouse.service.domain.mapper.WarehouseDataMapper;
 //import com.fns.warehouse.service.domain.ports.output.message.publisher.WarehouseCreatedRequestMessagePublisher;
 //import com.fns.warehouse.service.domain.ports.output.repository.StockRepository;
 //import com.fns.warehouse.service.domain.ports.output.message.publisher.StockRequestRequestMessagePublisher;
+import com.fns.warehouse.service.domain.ports.output.message.publisher.StockRequestRequestMessagePublisher;
 import com.fns.warehouse.service.domain.ports.output.repository.WarehouseRepository;
 //import com.fns.warehouse.service.domain.ports.output.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +25,7 @@ import java.util.UUID;
 public class WarehouseCreateHelper {
     private final WarehouseDomainService warehouseDomainService;
 
-//    private final WarehouseRepository warehouseRepository;
+    private final WarehouseRepository warehouseRepository;
 
     private final WarehouseDataMapper warehouseDataMapper;
 
@@ -32,12 +33,12 @@ public class WarehouseCreateHelper {
 
 
     public WarehouseCreateHelper(WarehouseDomainService warehouseDomainService,
-//                                 WarehouseRepository warehouseRepository,
+                                 WarehouseRepository warehouseRepository,
                                  WarehouseDataMapper warehouseDataMapper
 //                                 StockRequestRequestMessagePublisher stockRequestRequestMessagePublisher
                                  ) {
         this.warehouseDomainService = warehouseDomainService;
-//        this.warehouseRepository = warehouseRepository;
+        this.warehouseRepository = warehouseRepository;
         this.warehouseDataMapper = warehouseDataMapper;
 //        this.stockRequestRequestMessagePublisher = stockRequestRequestMessagePublisher;
     }
@@ -56,20 +57,19 @@ public class WarehouseCreateHelper {
     }
 
     private Warehouse saveWarehouse(Warehouse warehouse) {
-//        Warehouse warehouseResult = warehouseRepository.save(warehouse);
-//        if (warehouseResult == null) {
-//            log.error("Could not save order!");
-//            throw new WarehouseDomainException("Could not save order!");
-//        }
-//        log.info("Warehouse is saved with id: {}", warehouseResult.getId().getValue());
-//        return warehouseResult;
-        return Warehouse.builder().build();
+        Warehouse warehouseResult = warehouseRepository.save(warehouse);
+        if (warehouseResult == null) {
+            log.error("Could not save order!");
+            throw new WarehouseDomainException("Could not save order!");
+        }
+        log.info("Warehouse is saved with id: {}", warehouseResult.getId().getValue());
+        return warehouseResult;
     }
 
 //    @Transactional
 //    public StockTransferRequestedEvent requestedStockTransferEvent(StockTransferCommand stockTransferCommand) {
-//        Stock sourceStock = getStock(stockTransferCommand.getSourceStockId());
-//        Stock destinationStock = getStock(stockTransferCommand.getDestinationStockId());
+//        Stock sourceStock = getWarehouse(stockTransferCommand.getSourceStockId());
+//        Stock destinationStock = getWarehouse(stockTransferCommand.getDestinationStockId());
 //
 //        StockTransferRequestedEvent stockTransferRequestedEvent = warehouseDomainService.requestStockTransfer(
 //                sourceStock,destinationStock,
@@ -81,14 +81,13 @@ public class WarehouseCreateHelper {
 //        return stockTransferRequestedEvent;
 //    }
 
-    private Stock getStock(UUID stockId) {
-//        Stock stockResult = warehouseRepository.getStock(stockId);
-//        if (stockResult == null) {
-//            log.error("Data not found");
-//            throw new StockException("Data not found");
-//        }
-//        return stockResult;
-        return  Stock.builder().build();
+    private Warehouse getWarehouse(UUID warehouseId) {
+        Warehouse whResult = warehouseRepository.findById(warehouseId);
+        if (whResult == null) {
+            log.error("Data not found");
+            throw new StockException("Data not found");
+        }
+        return whResult;
     }
 
 }

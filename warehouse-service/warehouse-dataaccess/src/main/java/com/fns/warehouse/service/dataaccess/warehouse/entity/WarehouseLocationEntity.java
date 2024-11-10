@@ -15,7 +15,7 @@ import java.util.UUID;
 @Entity
 public class WarehouseLocationEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 

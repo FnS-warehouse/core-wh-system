@@ -20,20 +20,20 @@ public class WarehouseController {
         this.warehouseApplicationService = warehouseApplicationService;
     }
 
-    @GetMapping("")
+    @GetMapping()
     public ResponseEntity<String> getWarehouse() {
         log.info("Warehouse get");
         return ResponseEntity.ok("hello");
     }
 
-//    @PostMapping("/warehouse")
-//    public ResponseEntity<CreateWarehouseResponse> createWarehouse(@RequestBody CreateWarehouseCommand createWarehouseCommand) {
-//        log.info("Creating warehouse {} at {}", createWarehouseCommand.getName(), createWarehouseCommand.getLocation().getAddress());
-//        CreateWarehouseResponse createWarehouseResponse = warehouseApplicationService.createWarehouse(createWarehouseCommand);
-//        log.info("Warehouse created");
-//        return ResponseEntity.ok(createWarehouseResponse);
-////        return  ResponseEntity.ok("hello");
-//    }
+
+    @PostMapping()
+    public ResponseEntity<CreateWarehouseResponse> createWarehouse(@RequestBody CreateWarehouseCommand createWarehouseCommand) {
+        log.info("Creating warehouse {} at {}", createWarehouseCommand.getName(), createWarehouseCommand.getLocation().getAddress());
+        CreateWarehouseResponse createWarehouseResponse = warehouseApplicationService.createWarehouse(createWarehouseCommand);
+        log.info("Warehouse created");
+        return ResponseEntity.ok(createWarehouseResponse);
+    }
 
 //    @PostMapping("/stock/transfer")
 //    public ResponseEntity<StockTransferResponse> stockTransferRequest(@RequestBody StockTransferCommand stockTransferCommand) {
