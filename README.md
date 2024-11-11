@@ -67,7 +67,8 @@ Run dependency graph
 - [ ] Running Kafka for Event Driven Arch
   - [x] Must can run the kafka
   - [x] Avro Model 
-  - [ ] Publish Message to Kafka
+  - [x] Publish Message to Kafka
+  - [ ] Ganti versi Avro. SUpaya bisa diliat di offset Explorer
   - [ ] Buat minimal satu service lagi. Using `report-service`
   - [ ] Listen Message To Kafka
 - [ ] Materialized View Postgres

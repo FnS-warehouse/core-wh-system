@@ -16,7 +16,7 @@ public class WarehouseMessagingDataMapper {
                 .setId(UUID.randomUUID().toString())
                 .setSagaId(UUID.randomUUID().toString())
                 .setWarehouseId(warehouse.getId().getValue().toString())
-                .setCreatedAt(warehouseCreatedEvent.getCreatedAt().toInstant().toEpochMilli())
+                .setCreatedAt(warehouseCreatedEvent.getCreatedAt().toInstant())
                 .build();
     }
 

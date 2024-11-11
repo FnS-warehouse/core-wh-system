@@ -2,8 +2,12 @@ package com.fns.kafka.producer;
 
 import com.fns.kafka.config.data.KafkaConfigData;
 import com.fns.kafka.config.data.KafkaProducerConfigData;
+import com.fns.kafka.warehouse.avro.model.WarehouseReportingRequestAvroModel;
+import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
+import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import org.apache.avro.specific.SpecificRecordBase;
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
@@ -43,13 +47,17 @@ public class KafkaProducerConfig<K extends Serializable, V extends SpecificRecor
     }
 
     @Bean
-    public ProducerFactory<K, V> producerFactory() {
-
-        return new DefaultKafkaProducerFactory<>(producerConfig());
+    public ProducerFactory<String, WarehouseReportingRequestAvroModel> producerFactory() {
+        Map<String, Object> configProps = new HashMap<>();
+        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaConfigData.getBootstrapServers());
+        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
+        configProps.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, kafkaConfigData.getSchemaRegistryUrl());
+        return new DefaultKafkaProducerFactory<>(configProps);
     }
 
     @Bean
-    public KafkaTemplate<K, V> kafkaTemplate() {
+    public KafkaTemplate<String, WarehouseReportingRequestAvroModel> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 

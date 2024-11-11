@@ -22,8 +22,8 @@ public class CreateWarehouseKafkaMessagePublisher implements WarehouseCreatedReq
 
     public CreateWarehouseKafkaMessagePublisher(WarehouseMessagingDataMapper warehouseMessagingDataMapper,
                                                 WarehouseServiceConfigData warehouseServiceConfigData,
-                                            KafkaProducer<String, WarehouseReportingRequestAvroModel> kafkaProducer,
-                                            KafkaMessageHelper warehouseKafkaMessageHelper) {
+                                                KafkaProducer<String, WarehouseReportingRequestAvroModel> kafkaProducer,
+                                                KafkaMessageHelper warehouseKafkaMessageHelper) {
         this.warehouseMessagingDataMapper = warehouseMessagingDataMapper;
         this.warehouseServiceConfigData = warehouseServiceConfigData;
         this.kafkaProducer = kafkaProducer;
@@ -54,8 +54,7 @@ public class CreateWarehouseKafkaMessagePublisher implements WarehouseCreatedReq
                     " to kafka with order id: {}, error: {}", warehouseId, e.getMessage());
         }
 
-
         log.info("Warehouse requested sent to Kafka");
     }
-
 }
+

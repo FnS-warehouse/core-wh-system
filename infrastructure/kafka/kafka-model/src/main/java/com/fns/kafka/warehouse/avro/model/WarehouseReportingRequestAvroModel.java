@@ -16,10 +16,13 @@ public class WarehouseReportingRequestAvroModel extends org.apache.avro.specific
   private static final long serialVersionUID = 3212026144067446870L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"WarehouseReportingRequestAvroModel\",\"namespace\":\"com.fns.kafka.warehouse.avro.model\",\"fields\":[{\"name\":\"id\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"sagaId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"warehouseId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"createdAt\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"WarehouseReportingRequestAvroModel\",\"namespace\":\"com.fns.kafka.warehouse.avro.model\",\"fields\":[{\"name\":\"id\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"sagaId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"warehouseId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"createdAt\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
+  static {
+    MODEL$.addLogicalTypeConversion(new org.apache.avro.data.TimeConversions.TimestampMillisConversion());
+  }
 
   private static final BinaryMessageEncoder<WarehouseReportingRequestAvroModel> ENCODER =
       new BinaryMessageEncoder<>(MODEL$, SCHEMA$);
@@ -75,7 +78,7 @@ public class WarehouseReportingRequestAvroModel extends org.apache.avro.specific
   private java.lang.String id;
   private java.lang.String sagaId;
   private java.lang.String warehouseId;
-  private long createdAt;
+  private java.time.Instant createdAt;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -91,11 +94,11 @@ public class WarehouseReportingRequestAvroModel extends org.apache.avro.specific
    * @param warehouseId The new value for warehouseId
    * @param createdAt The new value for createdAt
    */
-  public WarehouseReportingRequestAvroModel(java.lang.String id, java.lang.String sagaId, java.lang.String warehouseId, java.lang.Long createdAt) {
+  public WarehouseReportingRequestAvroModel(java.lang.String id, java.lang.String sagaId, java.lang.String warehouseId, java.time.Instant createdAt) {
     this.id = id;
     this.sagaId = sagaId;
     this.warehouseId = warehouseId;
-    this.createdAt = createdAt;
+    this.createdAt = createdAt.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
   }
 
   @Override
@@ -116,6 +119,20 @@ public class WarehouseReportingRequestAvroModel extends org.apache.avro.specific
     }
   }
 
+  private static final org.apache.avro.Conversion<?>[] conversions =
+      new org.apache.avro.Conversion<?>[] {
+      null,
+      null,
+      null,
+      new org.apache.avro.data.TimeConversions.TimestampMillisConversion(),
+      null
+  };
+
+  @Override
+  public org.apache.avro.Conversion<?> getConversion(int field) {
+    return conversions[field];
+  }
+
   // Used by DatumReader.  Applications should not call.
   @Override
   @SuppressWarnings(value="unchecked")
@@ -124,7 +141,7 @@ public class WarehouseReportingRequestAvroModel extends org.apache.avro.specific
     case 0: id = value$ != null ? value$.toString() : null; break;
     case 1: sagaId = value$ != null ? value$.toString() : null; break;
     case 2: warehouseId = value$ != null ? value$.toString() : null; break;
-    case 3: createdAt = (java.lang.Long)value$; break;
+    case 3: createdAt = (java.time.Instant)value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -184,7 +201,7 @@ public class WarehouseReportingRequestAvroModel extends org.apache.avro.specific
    * Gets the value of the 'createdAt' field.
    * @return The value of the 'createdAt' field.
    */
-  public long getCreatedAt() {
+  public java.time.Instant getCreatedAt() {
     return createdAt;
   }
 
@@ -193,8 +210,8 @@ public class WarehouseReportingRequestAvroModel extends org.apache.avro.specific
    * Sets the value of the 'createdAt' field.
    * @param value the value to set.
    */
-  public void setCreatedAt(long value) {
-    this.createdAt = value;
+  public void setCreatedAt(java.time.Instant value) {
+    this.createdAt = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
   }
 
   /**
@@ -241,7 +258,7 @@ public class WarehouseReportingRequestAvroModel extends org.apache.avro.specific
     private java.lang.String id;
     private java.lang.String sagaId;
     private java.lang.String warehouseId;
-    private long createdAt;
+    private java.time.Instant createdAt;
 
     /** Creates a new Builder */
     private Builder() {
@@ -420,7 +437,7 @@ public class WarehouseReportingRequestAvroModel extends org.apache.avro.specific
       * Gets the value of the 'createdAt' field.
       * @return The value.
       */
-    public long getCreatedAt() {
+    public java.time.Instant getCreatedAt() {
       return createdAt;
     }
 
@@ -430,9 +447,9 @@ public class WarehouseReportingRequestAvroModel extends org.apache.avro.specific
       * @param value The value of 'createdAt'.
       * @return This builder.
       */
-    public com.fns.kafka.warehouse.avro.model.WarehouseReportingRequestAvroModel.Builder setCreatedAt(long value) {
+    public com.fns.kafka.warehouse.avro.model.WarehouseReportingRequestAvroModel.Builder setCreatedAt(java.time.Instant value) {
       validate(fields()[3], value);
-      this.createdAt = value;
+      this.createdAt = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
       fieldSetFlags()[3] = true;
       return this;
     }
@@ -463,7 +480,7 @@ public class WarehouseReportingRequestAvroModel extends org.apache.avro.specific
         record.id = fieldSetFlags()[0] ? this.id : (java.lang.String) defaultValue(fields()[0]);
         record.sagaId = fieldSetFlags()[1] ? this.sagaId : (java.lang.String) defaultValue(fields()[1]);
         record.warehouseId = fieldSetFlags()[2] ? this.warehouseId : (java.lang.String) defaultValue(fields()[2]);
-        record.createdAt = fieldSetFlags()[3] ? this.createdAt : (java.lang.Long) defaultValue(fields()[3]);
+        record.createdAt = fieldSetFlags()[3] ? this.createdAt : (java.time.Instant) defaultValue(fields()[3]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -491,59 +508,6 @@ public class WarehouseReportingRequestAvroModel extends org.apache.avro.specific
     READER$.read(this, SpecificData.getDecoder(in));
   }
 
-  @Override protected boolean hasCustomCoders() { return true; }
-
-  @Override public void customEncode(org.apache.avro.io.Encoder out)
-    throws java.io.IOException
-  {
-    out.writeString(this.id);
-
-    out.writeString(this.sagaId);
-
-    out.writeString(this.warehouseId);
-
-    out.writeLong(this.createdAt);
-
-  }
-
-  @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
-    throws java.io.IOException
-  {
-    org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
-    if (fieldOrder == null) {
-      this.id = in.readString();
-
-      this.sagaId = in.readString();
-
-      this.warehouseId = in.readString();
-
-      this.createdAt = in.readLong();
-
-    } else {
-      for (int i = 0; i < 4; i++) {
-        switch (fieldOrder[i].pos()) {
-        case 0:
-          this.id = in.readString();
-          break;
-
-        case 1:
-          this.sagaId = in.readString();
-          break;
-
-        case 2:
-          this.warehouseId = in.readString();
-          break;
-
-        case 3:
-          this.createdAt = in.readLong();
-          break;
-
-        default:
-          throw new java.io.IOException("Corrupt ResolvingDecoder.");
-        }
-      }
-    }
-  }
 }
 
 
