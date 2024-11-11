@@ -1,4 +1,3 @@
 networks:
-  warehouse-service:
+  wh-app:
     driver: bridge
-

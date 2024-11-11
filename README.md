@@ -65,10 +65,14 @@ Run dependency graph
 - [ ] Reference 
   - [ ] 7 Nov Lecturer Video 
 - [ ] Running Kafka for Event Driven Arch
-  - [ ] Must can run the kafka
-  - [ ] Avro Model 
+  - [x] Must can run the kafka
+  - [x] Avro Model 
   - [ ] Publish Message to Kafka
   - [ ] Buat minimal satu service lagi. Using `report-service`
   - [ ] Listen Message To Kafka
 - [ ] Materialized View Postgres
 - [ ] Create GKE using Terraform 
+
+## Assignment 
+- [ ] Register GCP
+- [ ] Can Build Project 

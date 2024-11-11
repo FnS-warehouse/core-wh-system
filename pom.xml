@@ -28,7 +28,7 @@
 	<modules>
 		<module>warehouse-service</module>
 		<module>common</module>
-<!--		<module>infrastructure</module>-->
+		<module>infrastructure</module>
 	</modules>
 
 	<scm>
@@ -39,6 +39,7 @@
 	</scm>
 	<properties>
 		<java.version>17</java.version>
+		<avro.version>1.12.0</avro.version>
 	</properties>
 	<dependencies>
 		<dependency>

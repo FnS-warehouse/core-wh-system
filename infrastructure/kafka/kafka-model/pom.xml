@@ -20,18 +20,22 @@
 
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+            <version>1.12.0</version>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.avro</groupId>
                 <artifactId>avro-maven-plugin</artifactId>
-                <version>1.11.1</version>
+                <version>1.12.0</version>
+                <configuration>
+                    <stringType>String</stringType>
+                    <enableDecimalLogicalType>true</enableDecimalLogicalType>
+                </configuration>
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
@@ -39,10 +43,8 @@
                             <goal>schema</goal>
                         </goals>
                         <configuration>
-                            <!-- Update the source directory to the location of your .avsc file -->
-                            <sourceDirectory>${project.basedir}/src/main/resources/avro</sourceDirectory>
-                            <!-- Define where the generated Java files should go -->
-                            <outputDirectory>${project.basedir}/target/generated-sources/avro</outputDirectory>
+                            <sourceDirectory>src/main/resources/avro</sourceDirectory>
+                            <outputDirectory>src/main/java</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>

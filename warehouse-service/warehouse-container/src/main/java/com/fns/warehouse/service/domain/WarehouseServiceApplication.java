@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 })
 @EntityScan(basePackages = {
 		"com.fns.warehouse.service.dataaccess.warehouse.entity",
+		"com.fns.warehouse.service.domain.ports.output.message.publisher"
 })
 @SpringBootApplication(scanBasePackages = "com.fns")
 public class WarehouseServiceApplication {

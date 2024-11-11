@@ -1,24 +1,5 @@
 version: "3.7"
 services:
-  zookeeper:
-    image: confluentinc/cp-zookeeper:${KAFKA_VERSION:-latest}
-    hostname: zookeeper
-    ports:
-      - "2181:2181"
-    environment:
-      ZOOKEEPER_SERVER_ID: 1
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_TICK_TIME: 2000
-      ZOOKEEPER_INIT_LIMIT: 5
-      ZOOKEEPER_SYNC_LIMIT: 2
-      ZOOKEEPER_SERVERS: zookeeper:2888:3888
-      KAFKA_OPTS: "-Dzookeeper.4lw.commands.whitelist=ruok"
-    volumes:
-      - "./volumes/zookeeper/data:/var/lib/zookeeper/data"
-      - "./volumes/zookeeper/transactions:/var/lib/zookeeper/log"
-    networks:
-      - ${GLOBAL_NETWORK:-kafka}
-
   schema-registry:
     image: confluentinc/cp-schema-registry:${KAFKA_VERSION}
     hostname: schema-registry
@@ -30,12 +11,12 @@ services:
       - "8081:8081"
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
-      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: zookeeper:2181
-      SCHEMA_REGISTRY_LISTENERS: PLAINTEXT://schema-registry:8081
+      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
+      SCHEMA_REGISTRY_LISTENERS: http://schema-registry:8081
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka-broker-2:9092,LISTENER_LOCAL://localhost:29092
       SCHEMA_REGISTRY_DEBUG: 'true'
     networks:
-      - ${GLOBAL_NETWORK:-kafka}
+      - kafka
 
   kafka-broker-1:
     image: confluentinc/cp-kafka:${KAFKA_VERSION}
@@ -53,7 +34,7 @@ services:
     volumes:
       - "./volumes/kafka/broker-1:/var/lib/kafka/data"
     networks:
-      - ${GLOBAL_NETWORK:-kafka}
+      - kafka
 
   kafka-broker-2:
     image: confluentinc/cp-kafka:${KAFKA_VERSION}
@@ -71,7 +52,7 @@ services:
     volumes:
       - "./volumes/kafka/broker-2:/var/lib/kafka/data"
     networks:
-      - ${GLOBAL_NETWORK:-kafka}
+      - kafka  # Ensure this matches the network name
 
   kafka-broker-3:
     image: confluentinc/cp-kafka:${KAFKA_VERSION}
@@ -89,7 +70,7 @@ services:
     volumes:
       - "./volumes/kafka/broker-3:/var/lib/kafka/data"
     networks:
-      - ${GLOBAL_NETWORK:-kafka}
+      - kafka  # Ensure this matches the network name
 
   kafka-manager:
     image: hlebalbau/kafka-manager:stable
@@ -99,7 +80,7 @@ services:
     environment:
       ZK_HOSTS: "zookeeper:2181"
     networks:
-      - ${GLOBAL_NETWORK:-kafka}
+      - kafka
 
 networks:
   kafka:

@@ -9,6 +9,7 @@ import com.fns.warehouse.service.domain.event.WarehouseCreatedEvent;
 import com.fns.warehouse.service.domain.mapper.WarehouseDataMapper;
 //import com.fns.warehouse.service.domain.ports.output.message.publisher.StockRequestRequestMessagePublisher;
 import com.fns.warehouse.service.domain.ports.output.message.publisher.StockRequestRequestMessagePublisher;
+import com.fns.warehouse.service.domain.ports.output.message.publisher.WarehouseCreatedRequestMessagePublisher;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -19,24 +20,25 @@ public class WarehouseCreateCommandHandler {
 
     private final WarehouseDataMapper warehouseDataMapper;
 
-//    private final WarehouseCreatedRequestMessagePublisher warehouseCreatedRequestMessagePublisher;
+    private final WarehouseCreatedRequestMessagePublisher warehouseCreatedRequestMessagePublisher;
 
 //    private final StockRequestRequestMessagePublisher stockRequestRequestMessagePublisher;
 
     public WarehouseCreateCommandHandler(WarehouseCreateHelper warehouseCreateHelper,
-                                         WarehouseDataMapper warehouseDataMapper
+                                         WarehouseDataMapper warehouseDataMapper,
+                                        WarehouseCreatedRequestMessagePublisher warehouseCreatedRequestMessagePublisher
 //                                         StockRequestRequestMessagePublisher stockRequestRequestMessagePublisher
                                     ) {
         this.warehouseCreateHelper = warehouseCreateHelper;
         this.warehouseDataMapper = warehouseDataMapper;
-//        this.warehouseCreatedRequestMessagePublisher = warehouseCreatedRequestMessagePublisher;
+        this.warehouseCreatedRequestMessagePublisher = warehouseCreatedRequestMessagePublisher;
 //        this.stockRequestRequestMessagePublisher = stockRequestRequestMessagePublisher;
     }
 
     public CreateWarehouseResponse createWarehouse(CreateWarehouseCommand createWarehouseCommand) {
         WarehouseCreatedEvent warehouseCreatedEvent = warehouseCreateHelper.persistWarehouse(createWarehouseCommand);
         log.info("Warehouse is created with id: {}", warehouseCreatedEvent.getEntity().getId().getValue());
-//        warehouseCreatedRequestMessagePublisher.publish(warehouseCreatedEvent);
+        warehouseCreatedRequestMessagePublisher.publish(warehouseCreatedEvent);
         return warehouseDataMapper.warehouseToCreateWarehouseResponse(warehouseCreatedEvent.getEntity(),
                 "Warehouse created successfully");
     }

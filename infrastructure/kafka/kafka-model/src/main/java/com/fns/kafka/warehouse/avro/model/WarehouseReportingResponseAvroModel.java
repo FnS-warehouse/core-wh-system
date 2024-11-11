@@ -11,11 +11,8 @@ import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
-import java.io.Serial;
-
 @org.apache.avro.specific.AvroGenerated
 public class WarehouseReportingResponseAvroModel extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  @Serial
   private static final long serialVersionUID = 5746172439149537714L;
 
 

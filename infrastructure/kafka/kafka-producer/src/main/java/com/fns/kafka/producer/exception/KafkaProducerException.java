@@ -1,4 +1,4 @@
-package com.fns.app.kafka.producer.exception;
+package com.fns.kafka.producer.exception;
 
 
 public class KafkaProducerException extends RuntimeException {

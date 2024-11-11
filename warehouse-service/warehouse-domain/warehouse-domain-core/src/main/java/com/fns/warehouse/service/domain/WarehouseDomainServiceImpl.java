@@ -17,14 +17,14 @@ import java.util.UUID;
 public class WarehouseDomainServiceImpl implements WarehouseDomainService {
 
     @Override
-    public WarehouseCreatedEvent createWarehouse(String name, Location location) throws WarehouseDomainException {
+    public WarehouseCreatedEvent createWarehouse(String name, Location location, DomainEventPublisher<WarehouseCreatedEvent> publisher) throws WarehouseDomainException {
         Warehouse warehouse = Warehouse.builder()
                 .warehouseId(new WarehouseId(UUID.randomUUID()))
                 .name(name)
                 .location(location)
                 .build();
 
-        return new WarehouseCreatedEvent(warehouse, ZonedDateTime.now());
+        return new WarehouseCreatedEvent(warehouse, ZonedDateTime.now(), publisher);
     }
 
     @Override

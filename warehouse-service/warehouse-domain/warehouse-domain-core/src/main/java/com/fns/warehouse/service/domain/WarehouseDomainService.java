@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public interface WarehouseDomainService {
 
-    WarehouseCreatedEvent createWarehouse(String name, Location location) throws WarehouseDomainException;
+    WarehouseCreatedEvent createWarehouse(String name, Location location, DomainEventPublisher<WarehouseCreatedEvent> publisher) throws WarehouseDomainException;
 
     WarehouseUpdatedEvent updateWarehouse(Warehouse warehouse, Location newLocation, String newName) throws WarehouseDomainException;
 

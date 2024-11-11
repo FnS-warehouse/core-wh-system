@@ -7,7 +7,7 @@ import com.fns.warehouse.service.domain.event.*;
 import com.fns.warehouse.service.domain.exception.StockException;
 import com.fns.warehouse.service.domain.exception.WarehouseDomainException;
 import com.fns.warehouse.service.domain.mapper.WarehouseDataMapper;
-//import com.fns.warehouse.service.domain.ports.output.message.publisher.WarehouseCreatedRequestMessagePublisher;
+import com.fns.warehouse.service.domain.ports.output.message.publisher.WarehouseCreatedRequestMessagePublisher;
 //import com.fns.warehouse.service.domain.ports.output.repository.StockRepository;
 //import com.fns.warehouse.service.domain.ports.output.message.publisher.StockRequestRequestMessagePublisher;
 import com.fns.warehouse.service.domain.ports.output.message.publisher.StockRequestRequestMessagePublisher;
@@ -29,17 +29,21 @@ public class WarehouseCreateHelper {
 
     private final WarehouseDataMapper warehouseDataMapper;
 
+    private final WarehouseCreatedRequestMessagePublisher warehouseCreatedRequestMessagePublisher;
+
 //    private final StockRequestRequestMessagePublisher stockRequestRequestMessagePublisher;
 
 
     public WarehouseCreateHelper(WarehouseDomainService warehouseDomainService,
                                  WarehouseRepository warehouseRepository,
-                                 WarehouseDataMapper warehouseDataMapper
+                                 WarehouseDataMapper warehouseDataMapper,
+                                 WarehouseCreatedRequestMessagePublisher warehouseCreatedRequestMessagePublisher
 //                                 StockRequestRequestMessagePublisher stockRequestRequestMessagePublisher
                                  ) {
         this.warehouseDomainService = warehouseDomainService;
         this.warehouseRepository = warehouseRepository;
         this.warehouseDataMapper = warehouseDataMapper;
+        this.warehouseCreatedRequestMessagePublisher = warehouseCreatedRequestMessagePublisher;
 //        this.stockRequestRequestMessagePublisher = stockRequestRequestMessagePublisher;
     }
 
@@ -48,7 +52,7 @@ public class WarehouseCreateHelper {
         Warehouse warehouse = warehouseDataMapper.createWarehouseCommandToWarehouse(createWarehouseCommand);
         WarehouseCreatedEvent warehouseCreatedEvent = warehouseDomainService.createWarehouse(
                 warehouse.getName(),
-                warehouse.getLocation());
+                warehouse.getLocation(), warehouseCreatedRequestMessagePublisher);
 
         saveWarehouse(warehouse);
 

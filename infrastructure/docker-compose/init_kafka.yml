@@ -1,9 +1,9 @@
-version: '3.7'
 services:
   init-kafka:
     image: confluentinc/cp-kafka:${KAFKA_VERSION}
-    entrypoint: ["/bin/sh", "-c"]
+    entrypoint: [ '/bin/sh', '-c' ]
     command: |
+      "
       # block until kafka is reachable
       kafka-topics --bootstrap-server kafka-broker-1:9092 --list
 
@@ -19,7 +19,9 @@ services:
       kafka-topics --bootstrap-server kafka-broker-1:9092 --create --if-not-exists --topic seller-approval-request --replication-factor 3 --partitions 3
       kafka-topics --bootstrap-server kafka-broker-1:9092 --create --if-not-exists --topic seller-approval-response --replication-factor 3 --partitions 3
 
+
       echo -e 'Successfully created the following topics:'
       kafka-topics --bootstrap-server kafka-broker-1:9092 --list
+      "
     networks:
       - ${GLOBAL_NETWORK:-kafka}

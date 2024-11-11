@@ -56,7 +56,7 @@
         <dependency>
             <groupId>io.confluent</groupId>
             <artifactId>kafka-avro-serializer</artifactId>
-            <version>7.7.1</version> <!-- Ensure version is correct and available -->
+            <version>7.7.1</version>
         </dependency>
     </dependencies>
 </project>
