@@ -29,6 +29,7 @@
 		<module>warehouse-service</module>
 		<module>common</module>
 		<module>infrastructure</module>
+        <module>reporting-service</module>
 	</modules>
 
 	<scm>

@@ -72,8 +72,16 @@ Run dependency graph
   - [ ] Buat minimal satu service lagi. Using `report-service`
   - [ ] Listen Message To Kafka
 - [ ] Materialized View Postgres
-- [ ] Create GKE using Terraform 
 
-## Assignment 
-- [ ] Register GCP
-- [ ] Can Build Project 
+## Assignment for 12 Nov
+- [x] Register GCP
+- [x] Can Build Project 
+
+## Assignment for 19 Nov
+- [ ] Watch Lecture 10 Nov for implement SAGA
+- [ ] Watch lecture 13 Nov for implement CQRS
+- [ ] Implement SAGA
+- [ ] Implement CQRS
+- [ ] Create GKE using Terraform 
+- [ ] Clone repo [cp-helm-chart](https://github.com/confluentinc/cp-helm-charts)
+- [ ] 
