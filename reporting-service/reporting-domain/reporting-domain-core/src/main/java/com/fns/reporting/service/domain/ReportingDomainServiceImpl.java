@@ -12,7 +12,7 @@ import java.util.UUID;
 public class ReportingDomainServiceImpl implements ReportingDomainService {
 
     @Override
-    public ReportCreatedEvent validateAndInitiateReport(String title, String content, DomainEventPublisher<ReportCreatedEvent> publisher) throws ReportingDomainException {
+    public ReportCreatedEvent validateAndInitiateReport(String title, String content) throws ReportingDomainException {
         Report report = Report.builder()
                 .reportId(new ReportId(UUID.randomUUID()))
                 .title(title)

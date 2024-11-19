@@ -6,7 +6,7 @@ import com.fns.reporting.service.domain.exception.ReportingDomainException;
 
 public interface ReportingDomainService {
 
-    ReportCreatedEvent validateAndInitiateReport(String title, String content, DomainEventPublisher<ReportCreatedEvent> publisher) throws ReportingDomainException;
+    ReportCreatedEvent validateAndInitiateReport(String title, String content) throws ReportingDomainException;
 
 
 }

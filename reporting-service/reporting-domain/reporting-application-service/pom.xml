@@ -25,8 +25,19 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>com.fns</groupId>
+            <artifactId>reporting-domain-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fns</groupId>
+            <artifactId>saga</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>
