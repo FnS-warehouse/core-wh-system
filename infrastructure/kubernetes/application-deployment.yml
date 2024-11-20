@@ -51,26 +51,26 @@ spec:
       port: 8181
   type: LoadBalancer
   loadBalancerIP: ""
----
-apiVersion: autoscaling/v2beta1
-kind: HorizontalPodAutoscaler
-metadata:
-  name: warehouse-deployment-hpa
-  namespace: default
-  labels:
-    app: warehouse-deployment
-spec:
-  scaleTargetRef:
-    kind: Deployment
-    name: warehouse-deployment
-    apiVersion: apps/v1
-  minReplicas: 2
-  maxReplicas: 4
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        targetAverageUtilization: 85
+#---
+#apiVersion: autoscaling/v2beta1
+#kind: HorizontalPodAutoscaler
+#metadata:
+#  name: warehouse-deployment-hpa
+#  namespace: default
+#  labels:
+#    app: warehouse-deployment
+#spec:
+#  scaleTargetRef:
+#    kind: Deployment
+#    name: warehouse-deployment
+#    apiVersion: apps/v1
+#  minReplicas: 2
+#  maxReplicas: 4
+#  metrics:
+#    - type: Resource
+#      resource:
+#        name: cpu
+#        targetAverageUtilization: 85
 #---
 #apiVersion: apps/v1
 #kind: Deployment
