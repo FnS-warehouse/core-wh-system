@@ -5,15 +5,17 @@ import com.fns.reporting.service.domain.entity.Report;
 import java.time.ZonedDateTime;
 
 public class ReportCreatedEvent extends ReportEvent {
-    private final DomainEventPublisher<ReportCreatedEvent> eventPublisher;
+//    private final DomainEventPublisher<ReportCreatedEvent> eventPublisher;
 
-    public ReportCreatedEvent(Report report, ZonedDateTime createdAt, DomainEventPublisher<ReportCreatedEvent> eventPublisher) {
+    public ReportCreatedEvent(Report report, ZonedDateTime createdAt
+//                              DomainEventPublisher<ReportCreatedEvent> eventPublisher
+    ) {
         super(report, createdAt);
-        this.eventPublisher = eventPublisher;
+//        this.eventPublisher = eventPublisher;
     }
 
     @Override
     public void fire() {
-        eventPublisher.publish(this);
+
     }
 }
