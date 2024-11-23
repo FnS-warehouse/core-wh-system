@@ -1,6 +1,6 @@
 package com.fns.user.service.dataaccess.user.entity;
 
-import com.fns.domain.valueObject.EmailAddress;
+import com.fns.domain.valueobject.EmailAddress;
 import com.fns.user.service.dataaccess.user.converter.EmailAddressConverter;
 import com.fns.user.service.dataaccess.user.converter.PasswordConverter;
 import com.fns.user.service.dataaccess.user.converter.RoleConverter;

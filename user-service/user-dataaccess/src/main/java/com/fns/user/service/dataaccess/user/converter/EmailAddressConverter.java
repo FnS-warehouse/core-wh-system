@@ -1,6 +1,6 @@
 package com.fns.user.service.dataaccess.user.converter;
 
-import com.fns.domain.valueObject.EmailAddress;
+import com.fns.domain.valueobject.EmailAddress;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 

@@ -4,10 +4,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.0</version>
-		<relativePath/>
+		<groupId>com.fns</groupId>
+		<artifactId>wh-app</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
 	<groupId>com.fns</groupId>
@@ -19,9 +18,7 @@
 	<url>http://maven.apache.org</url>
 
 	<modules>
-		<module>common</module>
 		<module>user-domain</module>
-		<module>infrastructure</module>
 		<module>user-messaging</module>
 		<module>user-container</module>
 		<module>user-application</module>
@@ -96,17 +93,23 @@
 
 	</dependencies>
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.github.ferstl</groupId>
-				<artifactId>depgraph-maven-plugin</artifactId>
-				<version>4.0.3</version>
-				<configuration>
-					<graphFormat>dot</graphFormat>
-					<showGroupIds>false</showGroupIds>
-					<showVersions>false</showVersions>
-				</configuration>
-			</plugin>
-		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>com.github.ferstl</groupId>
+					<artifactId>depgraph-maven-plugin</artifactId>
+					<version>4.0.3</version>
+					<configuration>
+						<graphFormat>dot</graphFormat>
+						<showGroupIds>false</showGroupIds>
+						<showVersions>false</showVersions>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 </project>

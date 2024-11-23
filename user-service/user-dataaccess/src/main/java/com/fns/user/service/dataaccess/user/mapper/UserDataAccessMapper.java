@@ -1,7 +1,7 @@
 package com.fns.user.service.dataaccess.user.mapper;
 
-import com.fns.domain.valueObject.EmailAddress;
-import com.fns.domain.valueObject.UserId;
+import com.fns.domain.valueobject.EmailAddress;
+import com.fns.domain.valueobject.UserId;
 import com.fns.user.service.dataaccess.user.entity.UserEntity;
 import com.fns.user.service.domain.entity.User;
 import com.fns.user.service.domain.valueObject.Role;

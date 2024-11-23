@@ -2,8 +2,8 @@ package com.fns.user.service.domain.entity;
 
 //import com.fns.user.service.domain.entity.User
 import com.fns.domain.entity.AggregateRoot;
-import com.fns.domain.valueObject.EmailAddress;
-import com.fns.domain.valueObject.UserId;
+import com.fns.domain.valueobject.EmailAddress;
+import com.fns.domain.valueobject.UserId;
 import com.fns.user.service.domain.exception.UserDomainException;
 import com.fns.user.service.domain.valueObject.Password;
 import com.fns.user.service.domain.valueObject.Role;

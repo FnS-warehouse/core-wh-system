@@ -1,6 +1,6 @@
 package com.fns.user.service.domain.dto.create;
 
-import com.fns.domain.valueObject.EmailAddress;
+import com.fns.domain.valueobject.EmailAddress;
 import com.fns.user.service.domain.valueObject.Password;
 import com.fns.user.service.domain.valueObject.Role;
 import com.fns.user.service.domain.valueObject.UserName;

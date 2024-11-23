@@ -4,8 +4,6 @@ import com.fns.domain.valueobject.WarehouseId;
 import com.fns.warehouse.service.domain.dto.create.CreateWarehouseCommand;
 import com.fns.warehouse.service.domain.dto.create.CreateWarehouseResponse;
 import com.fns.warehouse.service.domain.dto.create.WarehouseLocation;
-//import com.fns.warehouse.service.domain.entity.User;
-import com.fns.warehouse.service.domain.entity.Stock;
 import com.fns.warehouse.service.domain.entity.Warehouse;
 import com.fns.warehouse.service.domain.exception.WarehouseDomainException;
 import com.fns.warehouse.service.domain.mapper.WarehouseDataMapper;
@@ -19,6 +17,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -29,7 +29,9 @@ import static org.mockito.Mockito.when;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest(classes = WarehouseTestConfiguration.class)
+@ActiveProfiles("test")
 public class WarehouseApplicationServiceTest {
+
     @Autowired
     private WarehouseApplicationService warehouseApplicationService;
 
@@ -47,14 +49,10 @@ public class WarehouseApplicationServiceTest {
 
     private CreateWarehouseCommand createWarehouseCommand;
     private CreateWarehouseCommand createWarehouseCommandLocationNotCompleted;
-    private CreateWarehouseCommand createWarehouseCommandWrongProductPrice;
     private final UUID WAREHOUSE_ID = UUID.fromString("d215b5f8-0249-4dc5-89a3-51fd148cfb41");
-    private final UUID STOCK_ID = UUID.fromString("d215b5f8-0249-4dc5-89a3-51fd148cfb45");
-    private final UUID PRODUCT_ID = UUID.fromString("d215b5f8-0249-4dc5-89a3-51fd148cfb48");
-    private final BigDecimal PRICE = new BigDecimal("200.00");
 
     @BeforeAll
-    public void init(){
+    public void init() {
         createWarehouseCommand = CreateWarehouseCommand.builder()
                 .warehouseId(WAREHOUSE_ID)
                 .name("Sinar Jaya")
@@ -77,34 +75,19 @@ public class WarehouseApplicationServiceTest {
         warehouse.setId(new WarehouseId(WAREHOUSE_ID));
 
         when(warehouseRepository.save(any(Warehouse.class))).thenReturn(warehouse);
-//        when(warehouseRepository.getStock(any(UUID.class))).thenReturn(stock);
     }
 
     @Test
-    public void testCreateOrder(){
-        System.out.println(createWarehouseCommand.getName());
-        System.out.println(createWarehouseCommand.getLocation().getAddress());
+    public void testCreateWarehouse() {
         CreateWarehouseResponse createWarehouseResponse = warehouseApplicationService.createWarehouse(createWarehouseCommand);
-        assertEquals(createWarehouseResponse.getWarehouseStatus(), WarehouseStatus.ACTIVE);
-        assertEquals(createWarehouseResponse.getMessage(), "Warehouse created successfully");
+        assertEquals(WarehouseStatus.ACTIVE, createWarehouseResponse.getWarehouseStatus());
+        assertEquals("Warehouse created successfully", createWarehouseResponse.getMessage());
     }
 
     @Test
-    public void testCreateOrderWithNullLocation() {
-        WarehouseDomainException warehouseDomainException = assertThrows(WarehouseDomainException.class,
+    public void testCreateWarehouseWithNullLocation() {
+        WarehouseDomainException exception = assertThrows(WarehouseDomainException.class,
                 () -> warehouseApplicationService.createWarehouse(createWarehouseCommandLocationNotCompleted));
-        assertEquals(warehouseDomainException.getMessage(),
-                "Location must be set.");
+        assertEquals("Location must be set.", exception.getMessage());
     }
-
-
-    @Test
-    public void testStockTransferRequest(){
-        System.out.println(createWarehouseCommand.getName());
-        System.out.println(createWarehouseCommand.getLocation().getAddress());
-        CreateWarehouseResponse createWarehouseResponse = warehouseApplicationService.createWarehouse(createWarehouseCommand);
-        assertEquals(createWarehouseResponse.getWarehouseStatus(), WarehouseStatus.ACTIVE);
-        assertEquals(createWarehouseResponse.getMessage(), "Warehouse created successfully");
-    }
-
 }
