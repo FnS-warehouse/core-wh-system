@@ -3,9 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.fns</groupId>
-        <artifactId>warehouse-service</artifactId>
-        <version>1.0-SNAPSHOT</version>
-        <relativePath>../../../warehouse-service/pom.xml</relativePath>
+        <artifactId>wh-app</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>kafka-consumer</artifactId>

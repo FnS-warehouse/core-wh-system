@@ -30,7 +30,7 @@
 		<module>common</module>
 		<module>infrastructure</module>
 		<module>user-service</module>
-<!--        <module>reporting-service</module>-->
+        <module>reporting-service</module>
 	</modules>
 
 	<scm>

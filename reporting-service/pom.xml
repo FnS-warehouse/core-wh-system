@@ -16,7 +16,6 @@
         <module>reporting-container</module>
         <module>reporting-domain</module>
         <module>reporting-messaging</module>
-        <module>com</module>
     </modules>
 
     <properties>
@@ -24,6 +23,14 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.fns</groupId>
+            <artifactId>saga</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <pluginManagement>

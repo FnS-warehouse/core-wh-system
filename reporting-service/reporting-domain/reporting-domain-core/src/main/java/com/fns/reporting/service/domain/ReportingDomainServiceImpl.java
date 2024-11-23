@@ -19,7 +19,7 @@ public class ReportingDomainServiceImpl implements ReportingDomainService {
                 .content(content)
                 .build();
 
-        return new ReportCreatedEvent(report, ZonedDateTime.now(), publisher);
+        return new ReportCreatedEvent(report, ZonedDateTime.now());
     }
 
 }

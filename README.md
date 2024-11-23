@@ -78,11 +78,11 @@ Run dependency graph
 - [x] Can Build Project 
 
 ## Assignment for 19 Nov
-- [ ] Watch Lecture 10 Nov for implement SAGA
-  - [ ] Do Kafka Listener PaymentResponseMessageListener. Video checkpoint 01.38.53
-- [ ] Watch lecture 13 Nov for implement CQRS
-- [ ] Implement SAGA
+- [x] Watch Lecture 10 Nov for implement SAGA
+  - [x] Do Kafka Listener PaymentResponseMessageListener. Video checkpoint 01.38.53
+- [x] Watch lecture 13 Nov for implement CQRS
+- [x] Implement SAGA
 - [ ] Implement CQRS
 - [ ] Create GKE using Terraform 
-- [ ] Clone repo [cp-helm-chart](https://github.com/confluentinc/cp-helm-charts)
+- [x] Clone repo [cp-helm-chart](https://github.com/confluentinc/cp-helm-charts)
 - [ ] 
